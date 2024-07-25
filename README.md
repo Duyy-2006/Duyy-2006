@@ -16,13 +16,17 @@ spawn(function()
 end)
 function BuyRandom()
    local Item = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+   print(Item)
    return Item
 end
 
 function InSuccess()
-   if TimeFruit == false then
+   if TimeFruit then 
+    return
+   elseif TimeFruit == false then
       TimeFruit = true
    end
+   print(TimeFruit)
   return TimeFruit
 end
 function GetContent()
@@ -70,9 +74,6 @@ function getInventoryFruits()
 end
 function returnwebhook()
    local ContentSyn = "Huhu"
-   if game.Players.LocalPlayer.Data.Level.Value >= LevelPing then
-       local ContentSyn = "@here | Level Đạt Đến Level Đã Chọn : "..game.Players.LocalPlayer.Data.Level.Value
-   end
    local Webhook = {
        ["username"] = "AVN Sercurity 1.0.1",
        ["content"] = ContentSyn,
@@ -112,8 +113,9 @@ function returnwebhook()
 end
 spawn(function()
  while wait() do
-    if BuyRandom() == "[You must wait 01:59 hours to buy another random fruit.]" or BuyRandom() == 1 and InSuccess() then
+    if BuyRandom() == "[You must wait 01:59 hours to buy another random fruit.]" and InSuccess() then
       wait(60)
+      print(1)
       returnwebhook()
     end
  end

